@@ -1,0 +1,4 @@
+quartus/project/db
+quartus/project/incremental_db
+quartus/project/output_files
+*.bak
