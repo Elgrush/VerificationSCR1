@@ -23,7 +23,7 @@ module SoC # (
 	wire [31:0] 	wb_dat_i_scr_instr, wb_dat_i_scr_data,	wb_dat_i_ram,	wb_dat_i_array,	wb_dat_i_gpio;
 	wire 		wb_ack_scr_instr, wb_ack_scr_data,	wb_ack_ram,	wb_ack_array,	wb_ack_gpio;
 	
-	wb_ram #(.depth (4096),.memfile($sformatf("%s/%s", PATH_TO_MEM, "firmware.mem"))) 
+	wb_ram #(.ADDRESS_WIDTH (12),.MEMFILE($sformatf("%s/%s", PATH_TO_MEM, "firmware.mem"))) 
 	ram ( // Wishbone interface
 		.wb_clk_i(clk),
 		.wb_rst_n_i(rst_n),
@@ -38,7 +38,7 @@ module SoC # (
 		.wb_we_i(wb_we_ram)
 	);
 	
-	wb_ram #(.depth (4096),.memfile($sformatf("%s/%s", PATH_TO_MEM, "array.mem")), .instr_MASK(32'hFFFF_0000)) 
+	wb_ram #(.ADDRESS_WIDTH (12),.MEMFILE($sformatf("%s/%s", PATH_TO_MEM, "array.mem")), .instr_MASK(32'hFFFF_0000)) 
 	array_ram ( // Wishbone interface
 		.wb_clk_i(clk),
 		.wb_rst_n_i(rst_n),
