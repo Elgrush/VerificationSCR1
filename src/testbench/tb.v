@@ -1,6 +1,6 @@
 `timescale 1 ns / 1 ps
 
-module system_tb;
+module tb;
 	integer fd;
 
 	reg clk = 1;

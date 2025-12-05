@@ -1,37 +1,36 @@
-RTL_PATHS 		= $(CURDIR)/src/wb $(CURDIR)/src/wb/utils $(CURDIR)/src/top
-INCLUDE_PATHS 	= $(CURDIR)/submodules/scr1/src/includes
-RTL_LIST_FILES	= $(CURDIR)/submodules/scr1/src/core.files
-TB_PATH 		= $(CURDIR)/src/testbench
-TB_NAME			= tb.v
+RTL_PATHS 			:= $(CURDIR)/src/wb $(CURDIR)/src/wb/utils $(CURDIR)/src/top
+SCR_SRC_PATH 		:= $(CURDIR)/submodules/scr1/src
+INCLUDE_PATHS 		:= $(SCR_SRC_PATH)/includes
+RTL_SCR_LIST_FILES	:= $(SCR_SRC_PATH)/core.files
+TB_PATH 			:= $(CURDIR)/src/testbench
+TB_NAME				:= tb
+TB_EXTENSION		:= v
 
-IVERILOG_COMPILATION_FLAGS = -g2012
+IVERILOG_COMPILATION_FLAGS := -g2012
 
-TB_CALL = $(TB_PATH)/$(TB_NAME)
+TB_CALL := $(TB_PATH)/$(TB_NAME).$(TB_EXTENSION)
 
-RTL_FILES = $(INCLUDE_PATHS)/*.vh $(INCLUDE_PATHS)/*.svh \
-	$(RTL_PATHS)/*.v $(RTL_PATHS)/*.sv \
-	$(cat $(RTL_LIST_FILES)) \
-	$(TB_CALL)
+RTL_FILES := $(foreach path,$(RTL_PATHS), $(wildcard $(path)/*.v) $(wildcard $(path)/*.sv))
+RTL_FILES += $(foreach path,$(RTL_SCR_LIST_FILES), $(foreach file,$(shell paste -sd ' ' $(path)),$(SCR_SRC_PATH)/$(file)))
+RTL_FILES += $(TB_CALL)
 
-.PHONY: all\
-	clear_cache\
-	rebuild\
-	visualize_simulation
+.PHONY: all
+all:rebuild
 
-all:
-	#rebuild
-	visualize_simulation
-
-$(CURDIR)/.cache/system.vcd: $(RTL_FILES)
+$(CURDIR)/.cache/system.vcd : $(INCLUDE_FILES) $(RTL_FILES)
 	iverilog -o $(CURDIR)/.cache/system.vcd \
 	$(IVERILOG_COMPILATION_FLAGS) \
+	$(foreach path,$(INCLUDE_PATHS), -I $(path)) \
  	$(RTL_FILES) \
-	-s $(TB_CALL)
+	-s $(TB_NAME)
 
-visualize_simulation: $(CURDIR)/.cache/system.vcd
+.PHONY: visualize_simulation
+visualize_simulation:
 	gtkwave $(CURDIR)/.cache/system.vcd
 
+.PHONY: rebuild
 rebuild: $(CURDIR)/.cache/system.vcd
 
+.PHONY: clear_cache
 clear_cache:
 	rm -rf $(CURDIR)/.cache
