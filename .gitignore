@@ -4,3 +4,5 @@ quartus/project/output_files
 *.bak
 
 .cache
+transcript
+modelsim.ini

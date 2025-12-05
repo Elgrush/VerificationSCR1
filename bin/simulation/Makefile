@@ -15,22 +15,31 @@ RTL_FILES += $(foreach path,$(RTL_SCR_LIST_FILES), $(foreach file,$(shell paste 
 RTL_FILES += $(TB_CALL)
 
 .PHONY: all
-all:rebuild
+all: run_vsim
 
-$(CURDIR)/.cache/system.vcd : $(INCLUDE_FILES) $(RTL_FILES)
-	iverilog -o $(CURDIR)/.cache/system.vcd \
+$(CURDIR)/.cache/systemIV.vcd : $(INCLUDE_FILES) $(RTL_FILES)
+	iverilog -o $(CURDIR)/.cache/systemIV.vcd \
 	$(IVERILOG_COMPILATION_FLAGS) \
 	$(foreach path,$(INCLUDE_PATHS), -I $(path)) \
  	$(RTL_FILES) \
 	-s $(TB_NAME)
 
+.PHONY: run_vsim
+run_vsim : $(INCLUDE_FILES) $(RTL_FILES)
+	mkdir -p $(CURDIR)/.cache/work
+	vlib $(CURDIR)/.cache/work
+	vmap work $(CURDIR)/.cache/work
+	$(foreach file,$(INCLUDE_FILES), $(bash vlog -sv $(file) -work $(CURDIR)/.cache/work))
+	$(foreach file,$(RTL_FILES), $(bash vlog -sv $(file) -work $(CURDIR)/.cache/work))
+	vlog -sv $(TB_CALL) -work $(CURDIR)/.cache/work
+	vsim -voptargs=+acc do "work.$(TB_NAME) log -r /* run -all"
+
 .PHONY: visualize_simulation
 visualize_simulation:
-	gtkwave $(CURDIR)/.cache/system.vcd
-
-.PHONY: rebuild
-rebuild: $(CURDIR)/.cache/system.vcd
+	gtkwave $(CURDIR)/.cache/systemIV.vcd
 
 .PHONY: clear_cache
 clear_cache:
-	rm -rf $(CURDIR)/.cache
+	rm -rf $(CURDIR)/.cache \
+		transcript \
+		modelsim.ini
