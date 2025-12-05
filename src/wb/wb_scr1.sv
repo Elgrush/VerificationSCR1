@@ -34,21 +34,33 @@ module wb_scr1 (
 	output [35:0] trace_data
 	
 );	
-	logic imem2core_req_ack;        // IMEM request acknowledge
+	logic [63:0] timer;
+
+	always_ff @( posedge wb_clk_i or negedge wb_rst_n_i ) begin : blockName
+		if(!wb_rst_n_i) begin
+			timer <= '0;
+		end else begin
+			timer <= timer + 1'b1;
+		end
+	end
+
+	logic imem2core_req_ack = wbm_ack_instr_i;        // IMEM request acknowledge
 	logic core2imem_req;            // IMEM request
 	logic [`SCR1_IMEM_AWIDTH-1:0] core2imem_addr;           // IMEM address
-	logic [`SCR1_IMEM_DWIDTH-1:0] imem2core_rdata;          // IMEM read data
-	type_scr1_mem_resp_e imem2core_resp;           // IMEM response
+	logic [`SCR1_IMEM_DWIDTH-1:0] imem2core_rdata = wbm_dat_instr_i;          // IMEM read data
+	type_scr1_mem_resp_e imem2core_resp = type_scr1_mem_resp_e.SCR1_MEM_RESP_RDY_ER;           // IMEM response
 
 	// Data Memory Interface
-	logic dmem2core_req_ack;        // DMEM request acknowledge
+	logic dmem2core_req_ack = wbm_ack_data_i;        // DMEM request acknowledge
 	logic core2dmem_req;            // DMEM request
 	type_scr1_mem_cmd_e core2dmem_cmd;            // DMEM command
 	type_scr1_mem_width_e core2dmem_width;          // DMEM data width
 	logic [`SCR1_IMEM_AWIDTH-1:0] core2dmem_addr;           // DMEM address
-	logic core2dmem_wdata;          // DMEM write data
-	logic [`SCR1_IMEM_DWIDTH-1:0] dmem2core_rdata;          // DMEM read data
+	logic [`SCR1_IMEM_DWIDTH-1:0] core2dmem_wdata;          // DMEM write data
+	logic [`SCR1_IMEM_DWIDTH-1:0] dmem2core_rdata = wbm_dat_data_i;          // DMEM read data
 	type_scr1_mem_resp_e dmem2core_resp;            // DMEM response
+
+	assign eoi = irq;
 
 	scr1_core_top scr1_core (
 
@@ -60,6 +72,13 @@ module wb_scr1 (
 		.clk(wb_clk_i),                        // Core clock
 		.core_rst_n_o(wb_rst_n_i),               // Core reset
 		.core_rdc_qlfy_o('0),            // Core RDC qualifier
+
+		.core_irq_ext_i('0),             // External interrupt request
+		.core_irq_soft_i(irq),            // Software generated interrupt request
+		.core_irq_mtimer_i('0),          // Machine timer interrupt request
+
+    	// Memory-mapped external timer
+    	.core_mtimer_val_i(timer),          // Machine timer value
 
 		// Instruction Memory Interface
 		.imem2core_req_ack_i(imem2core_req_ack),        // IMEM request acknowledge
@@ -81,6 +100,19 @@ module wb_scr1 (
 
 	);
 
+	logic [3:0] core2dmem_width_decoded;
+
+	always_comb begin
+		if(core2dmem_cmd == type_scr1_mem_cmd_e.SCR1_MEM_CMD_WR)
+		case (core2dmem_width)
+			type_scr1_mem_width_e.SCR1_MEM_WIDTH_BYTE : core2dmem_width_decoded = 4'b0001;
+			type_scr1_mem_width_e.SCR1_MEM_WIDTH_HWORD : core2dmem_width_decoded = 4'b0011;
+			type_scr1_mem_width_e.SCR1_MEM_WIDTH_WORD : core2dmem_width_decoded = 4'b1111;
+			default: core2dmem_width_decoded = '0;
+		endcase
+		else core2dmem_width_decoded = '0;
+	end
+
 	wb_master_scr instr_master (
 		.wb_rst_i(wb_rst_i),
 		.wb_clk_i(wb_clk_i),
@@ -92,7 +124,11 @@ module wb_scr1 (
 		.wbm_sel_o(wbm_sel_instr_o),
 		.wbm_stb_o(wbm_stb_instr_o),
 		.wbm_ack_i(wbm_ack_instr_i),
-		.wbm_cyc_o(wbm_cyc_instr_o)
+		.wbm_cyc_o(wbm_cyc_instr_o),
+
+        .mem_addr_i('0),
+        .mem_wdata_i('0),
+        .mem_wstrb_i('0)
 	), data_master(
 		.wb_rst_i(wb_rst_i),
 		.wb_clk_i(wb_clk_i),
@@ -104,6 +140,10 @@ module wb_scr1 (
 		.wbm_sel_o(wbm_sel_data_o),
 		.wbm_stb_o(wbm_stb_data_o),
 		.wbm_ack_i(wbm_ack_data_i),
-		.wbm_cyc_o(wbm_cyc_data_o)
+		.wbm_cyc_o(wbm_cyc_data_o),
+
+        .mem_addr_i(core2dmem_addr),
+        .mem_wdata_i(core2dmem_wdata),
+        .mem_wstrb_i(core2dmem_width_decoded)
 	);
 endmodule

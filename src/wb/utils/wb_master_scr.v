@@ -15,6 +15,10 @@ module wb_master_scr (
 	output reg wbm_stb_o,
 	input wbm_ack_i,
 	output reg wbm_cyc_o,
+
+	input [`SCR1_IMEM_AWIDTH-1:0] mem_addr_i,
+	input [`SCR1_IMEM_DWIDTH-1:0] mem_wdata_i,
+	input [3:0] mem_wstrb_i
 );
     localparam IDLE = 2'b00;
 	localparam WBSTART = 2'b01;
@@ -23,7 +27,7 @@ module wb_master_scr (
 	reg [1:0] state;
 
 	wire we;
-	assign we = (mem_wstrb[0] | mem_wstrb[1] | mem_wstrb[2] | mem_wstrb[3]);
+	assign we = |mem_wstrb_i;
 
 	always @(posedge wb_clk_i) begin
 		if (!wb_rst_n_i) begin
@@ -38,10 +42,10 @@ module wb_master_scr (
 			case (state)
 				IDLE: begin
 					if (mem_valid) begin
-						wbm_adr_o <= mem_addr;
-						wbm_dat_o <= mem_wdata;
+						wbm_adr_o <= mem_addr_i;
+						wbm_dat_o <= mem_wdata_i;
 						wbm_we_o <= we;
-						wbm_sel_o <= mem_wstrb;
+						wbm_sel_o <= mem_wstrb_i;
 
 						wbm_stb_o <= 1'b1;
 						wbm_cyc_o <= 1'b1;
