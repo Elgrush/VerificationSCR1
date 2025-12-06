@@ -1,0 +1,42 @@
+
+There are no discarded input sections
+
+Memory Configuration
+
+Name             Origin             Length             Attributes
+*default*        0x00000000         0xffffffff
+
+Linker script and memory map
+
+
+.memory         0x00000000      0x37c
+                0x00000000                        . = 0x0
+ *(.init)
+ *(.text)
+ .text          0x00000000      0x320 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x00000000                read_int
+                0x00000008                write_int
+                0x00000010                mul_fp
+                0x00000034                div_fp
+                0x00000058                exp_fp
+                0x000000d4                sqroot_fp
+                0x00000140                Bartlett_fp
+                0x000001e8                swap
+                0x000001fc                partition
+                0x000002c0                quickSort
+ *(*)
+ .data          0x00000320        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .bss           0x00000320        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .text.startup  0x00000320       0x24 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x00000320                main
+ .comment       0x00000344       0x19 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                                 0x1a (size before relaxing)
+ .note.GNU-stack
+                0x0000035d        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .riscv.attributes
+                0x0000035d       0x1c /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x0000037c                        . = ALIGN (0x4)
+ *fill*         0x00000379        0x3 
+                0x0000037c                        end = .
+LOAD /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+OUTPUT(/mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.elf elf32-littleriscv)

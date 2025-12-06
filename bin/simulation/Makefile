@@ -32,7 +32,7 @@ run_vsim : $(INCLUDE_FILES) $(RTL_FILES)
 	$(foreach file,$(INCLUDE_FILES), $(bash vlog -sv $(file) -work $(CURDIR)/.cache/work))
 	$(foreach file,$(RTL_FILES), $(bash vlog -sv $(file) -work $(CURDIR)/.cache/work))
 	vlog -sv $(TB_CALL) -work $(CURDIR)/.cache/work
-	vsim -voptargs=+acc do "work.$(TB_NAME) log -r /* run -all"
+	vsim -voptargs=+acc do "work.$(TB_NAME) log -r /* vcd file $(CURDIR)/.cache/systemQ.vcd vcd add -r /* run -all"
 
 .PHONY: visualize_simulation
 visualize_simulation:
