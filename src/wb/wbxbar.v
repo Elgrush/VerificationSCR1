@@ -128,7 +128,7 @@ module	wbxbar #(
 		// }}}
 	) (
 		// {{{
-		input	wire			i_clk, i_rst_n,
+		input	wire			i_clk, i_reset,
 		//
 		// Here are the bus inputs from each of the WB bus masters
 		input	wire	[NM-1:0]	i_mcyc, i_mstb, i_mwe,
@@ -263,7 +263,7 @@ module	wbxbar #(
 		) iskid (
 			// {{{
 			.i_clk(i_clk),
-			.i_rst_n(i_rst_n || !i_mcyc[N]),
+			.i_reset(i_reset || !i_mcyc[N]),
 			.i_valid(i_mstb[N]), .o_ready(iskd_ready),
 			.i_data({ i_mwe[N], i_maddr[N*AW +: AW],
 					i_mdata[N*DW +: DW],
@@ -288,7 +288,7 @@ module	wbxbar #(
 			// }}}
 		) adcd(
 			// {{{
-			.i_clk(i_clk), .i_rst_n(!i_rst_n),
+			.i_clk(i_clk), .i_reset(i_reset),
 			.i_valid(skd_stb && i_mcyc[N]), .o_stall(skd_stall),
 				.i_addr(skd_addr),
 				.i_data({ skd_we, skd_data, skd_sel }),
@@ -364,7 +364,7 @@ module	wbxbar #(
 				drop_sgrant = 1;
 			if (!sgrant[M])
 				drop_sgrant = 0;
-			if (!i_rst_n)
+			if (i_reset)
 				drop_sgrant = 1;
 		end
 		// }}}
@@ -507,7 +507,7 @@ module	wbxbar #(
 		initial	r_grant = 0;
 		initial	r_mgrant = 0;
 		always @(posedge i_clk)
-		if (!i_rst_n || !i_mcyc[N])
+		if (i_reset || !i_mcyc[N])
 		begin
 			r_grant  <= 0;
 			r_mgrant <= 0;
@@ -766,7 +766,7 @@ module	wbxbar #(
 				r_sstb  <= 1'b0;
 			end
 
-			if (!i_rst_n || s_err[M])
+			if (i_reset || s_err[M])
 			begin
 				r_scyc <= 1'b0;
 				r_sstb <= 1'b0;
@@ -914,7 +914,7 @@ module	wbxbar #(
 					r_merr   <= !o_merr[N];
 				end
 
-				if (!i_rst_n || !i_mcyc[N] || o_merr[N])
+				if (i_reset || !i_mcyc[N] || o_merr[N])
 				begin
 					r_mack   <= 1'b0;
 					r_merr   <= 1'b0;
@@ -1030,7 +1030,7 @@ module	wbxbar #(
 		initial	r_nearfull = 0;
 		initial	r_full     = 0;
 		always @(posedge i_clk)
-		if (!i_rst_n || !i_mcyc[N] || o_merr[N])
+		if (i_reset || !i_mcyc[N] || o_merr[N])
 		begin
 			lclpending <= 0;
 			r_full    <= 0;
@@ -1071,7 +1071,7 @@ module	wbxbar #(
 			initial	deadlock_timer = OPT_TIMEOUT;
 			initial	r_timed_out = 0;
 			always @(posedge i_clk)
-			if (!i_rst_n || !i_mcyc[N]
+			if (i_reset || !i_mcyc[N]
 					||((w_mpending[N] == 0) && !m_stb[N])
 					||(m_stb[N] && !m_stall[N])
 					||(o_mack[N] || o_merr[N])
@@ -1162,7 +1162,7 @@ module	wbxbar #(
 
 	always @(*)
 	if (!f_past_valid)
-		assume(!i_rst_n);
+		assume(i_reset);
 
 	generate for(N=0; N<NM; N=N+1)
 	begin : GRANT_CHECKING
@@ -1309,7 +1309,7 @@ module	wbxbar #(
 			.F_LGDEPTH(LGMAXBURST),
 			.F_MAX_ACK_DELAY(0),
 			.F_MAX_STALL(0)
-			) slvi(i_clk, !i_rst_n,
+			) slvi(i_clk, i_reset,
 				i_mcyc[N], i_mstb[N], i_mwe[N],
 				i_maddr[N*AW +: AW], i_mdata[N*DW +: DW],
 				i_msel[N*(DW/8) +: (DW/8)],
@@ -1325,7 +1325,7 @@ module	wbxbar #(
 			assert(m_stall[N] || o_merr[N]);
 
 		always @(posedge i_clk)
-		if (f_past_valid && $past(!!i_rst_n && i_mstb[N] && o_mstall[N]))
+		if (f_past_valid && $past(!i_reset && i_mstb[N] && o_mstall[N]))
 			assume($stable(i_mdata[N*DW +: DW]));
 		// }}}
 	end endgenerate
@@ -1338,7 +1338,7 @@ module	wbxbar #(
 			.F_LGDEPTH(LGMAXBURST),
 			.F_MAX_ACK_DELAY(F_MAX_DELAY),
 			.F_MAX_STALL(2)
-			) mstri(i_clk, !i_rst_n,
+			) mstri(i_clk, i_reset,
 				o_scyc[M], o_sstb[M], o_swe[M],
 				o_saddr[M*AW +: AW], o_sdata[M*DW +: DW],
 				o_ssel[M*(DW/8) +: (DW/8)],
@@ -1383,7 +1383,7 @@ module	wbxbar #(
 			assert(f_moutstanding[N]
 				== ((OPT_BUFFER_DECODER & dcd_stb[N]) ? 1:0));
 
-		else if (i_mcyc[N] && mgrant[N] && !!i_rst_n)
+		else if (i_mcyc[N] && mgrant[N] && !i_reset)
 		for(iM=0; iM<NS; iM=iM+1)
 		if (grant[N][iM] && o_scyc[iM] && !i_serr[iM] && !o_merr[N])
 			assert(n_outstanding
@@ -1391,7 +1391,7 @@ module	wbxbar #(
 					+(o_sstb[iM] ? 1:0));
 
 		always @(*)
-		if (!!i_rst_n)
+		if (!i_reset)
 		begin
 			for(iM=0; iM<NS; iM=iM+1)
 			if (grant[N][iM] && i_mcyc[N])
@@ -1412,7 +1412,7 @@ module	wbxbar #(
 		end
 
 		always @(*)
-		if (!!i_rst_n && OPT_BUFFER_DECODER && i_mcyc[N])
+		if (!i_reset && OPT_BUFFER_DECODER && i_mcyc[N])
 		begin
 			if (dcd_stb[N])
 				assert(i_mwe[N] == m_we[N]);
@@ -1756,7 +1756,7 @@ module	wbxbar #(
 
 	initial	f_cvr_aborted = 0;
 	always @(posedge i_clk)
-	if (!f_past_valid || !i_rst_n)
+	if (!f_past_valid || i_reset)
 		f_cvr_aborted <= 0;
 	else for(iN=0; iN<NM; iN=iN+1)
 	begin
@@ -1774,7 +1774,7 @@ module	wbxbar #(
 	begin : GEN_FM_ACKD
 
 		always @(posedge i_clk)
-		if (!i_rst_n)
+		if (i_reset)
 			f_m_ackd[N] <= 0;
 		else if (o_mack[N])
 			f_m_ackd[N] <= 1'b1;
@@ -1797,7 +1797,7 @@ module	wbxbar #(
 	begin : GEN_FS_ACKD
 
 		always @(posedge i_clk)
-		if (!i_rst_n)
+		if (i_reset)
 			f_s_ackd[M] <= 1'b0;
 		else if (sgrant[M] && o_mack[sindex[M]])
 			f_s_ackd[M] <= 1'b1;

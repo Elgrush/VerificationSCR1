@@ -4,17 +4,21 @@
 
 module wb_master_scr (
     // Wishbone interfaces
-	input wb_rst_i,
+	input wb_rst_n_i,
 	input wb_clk_i,
 
 	output reg [31:0] wbm_adr_o,
 	output reg [31:0] wbm_dat_o,
 	input [31:0] wbm_dat_i,
+	output reg [31:0] mem_rdata,
 	output reg wbm_we_o,
 	output reg [3:0] wbm_sel_o,
 	output reg wbm_stb_o,
 	input wbm_ack_i,
 	output reg wbm_cyc_o,
+
+	input mem_valid,
+	output reg mem_ready,
 
 	input [`SCR1_IMEM_AWIDTH-1:0] mem_addr_i,
 	input [`SCR1_IMEM_DWIDTH-1:0] mem_wdata_i,

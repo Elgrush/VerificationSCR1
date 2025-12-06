@@ -38,7 +38,6 @@
 
 set_global_assignment -name FAMILY "Cyclone V"
 set_global_assignment -name DEVICE 5CSEMA5F31C6
-set_global_assignment -name TOP_LEVEL_ENTITY wb_ram
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 17.1.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "01:39:39  DECEMBER 05, 2025"
 set_global_assignment -name LAST_QUARTUS_VERSION "17.1.0 Lite Edition"
@@ -162,6 +161,243 @@ set_location_assignment PIN_AE12 -to SW[9]
 set_location_assignment PIN_AE12 -to SW_9
 set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
 set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_0 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_1 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_2 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_3 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[4] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_4 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[5] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_5 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[6] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_6 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[7] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_7 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_8 -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9] -entity wb_ram
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_9 -entity wb_ram
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity wb_ram -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity wb_ram -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity wb_ram -section_id Top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity wb_ram -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -entity scr1_core_top -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -entity scr1_core_top -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -entity scr1_core_top -section_id Top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX1_N_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX2_N_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX3_N_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX4_N_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX5_N_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to KEY_N_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[0] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_0 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[1] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_1 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[2] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_2 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[3] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_3 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[4] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_4 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[5] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_5 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[6] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_6 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[7] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_7 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_8 -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9] -entity scr1_core_top
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_9 -entity scr1_core_top
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -entity scr1_core_top -section_id Top
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N[0]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HEX0_N_0
@@ -275,10 +511,40 @@ set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[8]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_8
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW[9]
 set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to SW_9
+set_global_assignment -name TOP_LEVEL_ENTITY DE1_SOC_golden_top
+set_global_assignment -name VERILOG_FILE ../../src/top/DE1_SOC_golden_top.v
+set_global_assignment -name VERILOG_FILE ../../src/wb/wb_master_scr.v
+set_global_assignment -name VERILOG_FILE ../../src/wb/utils/skidbuffer.v
+set_global_assignment -name VERILOG_FILE ../../src/wb/utils/addrdecode.v
+set_global_assignment -name VERILOG_FILE ../../src/wb/SoC.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_tapc_synchronizer.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_tapc_shift_reg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_tapc.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_scu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_dmi.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_dm.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_core_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/scr1_clk_ctrl.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/primitives/scr1_reset_cells.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/primitives/scr1_cg.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_top.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_tdu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_mprf.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_lsu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_ifu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_idu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_ialu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_hdu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_exu.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_pipe_csr.sv
+set_global_assignment -name SYSTEMVERILOG_FILE ../../submodules/scr1/src/core/pipeline/scr1_ipic.sv
+set_global_assignment -name VERILOG_FILE ../../src/wb/wbxbar.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../../src/wb/wb_scr1.sv
+set_global_assignment -name VERILOG_FILE ../../src/wb/wb_gpio.v
+set_global_assignment -name SYSTEMVERILOG_FILE ../../src/top/utils/frequency_splitter.sv
 set_global_assignment -name SYSTEMVERILOG_FILE ../../src/wb/wb_ram.sv
 set_global_assignment -name TCL_SCRIPT_FILE ../tcl/de1soc.tcl
 set_global_assignment -name TCL_SCRIPT_FILE ../tcl/de10standard.tcl
-set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
-set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
-set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name VERILOG_INPUT_VERSION SYSTEMVERILOG_2005
+set_global_assignment -name VERILOG_SHOW_LMF_MAPPING_MESSAGES OFF
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -28,7 +28,10 @@ module tb;
 
 
 
-	SoC uut (
+	SoC #(
+		.FIRMWARE_FILE("../../src/data/firmware.mem"),
+		.ARRAY_FILE("../../src/data/array.mem")
+      ) uut (
 		.clk	(clk),
 		.f_clk	(f_clk),
 		.rst	(resetn),

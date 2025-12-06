@@ -250,16 +250,27 @@ module DE1_SOC_golden_top(
 //  REG/WIRE declarations
 //=======================================================
 
-
-
+      wire clk;
 
 
 //=======================================================
 //  Structural coding
 //=======================================================
 
+      SoC #(
+            .FIRMWARE_FILE("../../src/data/firmware.mem"),
+            .ARRAY_FILE("../../src/data/array.mem")
+      ) soc (
+            .clk(clk),
+            .rst_n(KEY[0]),
+            .gpio(GPIO_0),
+            .gpio1(GPIO_1)
+      );
 
-
-
+      frequency_splitter #(.N(50_000_000)) fs (
+            .clk_in(CLOCK_50),
+            .rst_n(KEY[0]),
+            .clk_out(clk)
+      );
 
 endmodule

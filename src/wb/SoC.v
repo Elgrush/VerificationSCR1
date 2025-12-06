@@ -1,10 +1,10 @@
 module SoC # (
-	parameter PATH_TO_MEM = "src/data"
+	parameter FIRMWARE_FILE = "",
+	parameter ARRAY_FILE = ""
 ) (
 	input clk,
 	input rst_n,
-	output [31:0] gpio, gpio1,
-	output [31:0] opcode
+	output [31:0] gpio, gpio1
 	
 );
 
@@ -23,7 +23,7 @@ module SoC # (
 	wire [31:0] 	wb_dat_i_scr_instr, wb_dat_i_scr_data,	wb_dat_i_ram,	wb_dat_i_array,	wb_dat_i_gpio;
 	wire 		wb_ack_scr_instr, wb_ack_scr_data,	wb_ack_ram,	wb_ack_array,	wb_ack_gpio;
 	
-	wb_ram #(.ADDRESS_WIDTH (12),.MEMFILE($sformatf("%s/%s", PATH_TO_MEM, "firmware.mem"))) 
+	wb_ram #(.ADDRESS_WIDTH (12),.MEMFILE(FIRMWARE_FILE), .ADDR_MASK(32'hFFFF_0000)) 
 	ram ( // Wishbone interface
 		.wb_clk_i(clk),
 		.wb_rst_n_i(rst_n),
@@ -38,7 +38,7 @@ module SoC # (
 		.wb_we_i(wb_we_ram)
 	);
 	
-	wb_ram #(.ADDRESS_WIDTH (12),.MEMFILE($sformatf("%s/%s", PATH_TO_MEM, "array.mem")), .instr_MASK(32'hFFFF_0000)) 
+	wb_ram #(.ADDRESS_WIDTH (12),.MEMFILE(ARRAY_FILE), .ADDR_MASK(32'hFFFF_0000)) 
 	array_ram ( // Wishbone interface
 		.wb_clk_i(clk),
 		.wb_rst_n_i(rst_n),
@@ -53,10 +53,10 @@ module SoC # (
 		.wb_we_i(wb_we_array)
 	);
 	
-	wb_gpio #(.GPIO_instr(32'h1001_0000)) wb_gpio
+	wb_gpio #(.GPIO_ADDR(32'h1001_0000)) wb_gpio
 	(
 		.clk_i(clk),         // clock
-  		.rst_n_i(rst_n),         // rst_n (asynchronous active low)
+  		.i_rst_n(rst_n),         // rst_n (asynchronous active low)
   		.cyc_i(wb_cyc_gpio),         // cycle
   		.stb_i(wb_stb_gpio),         // strobe
   		.adr_i(wb_adr_gpio),         // instress adr_i[1]
@@ -98,14 +98,14 @@ module SoC # (
 	//wishbone interconnect crossbar
 	wbxbar
 	#(	.NM(2),.NS(3),.AW(32),.DW(32),
-		.SLAVE_instr({32'h0000_0000, 32'h0001_0000, 32'h1001_0000}),
+		.SLAVE_ADDR({32'h0000_0000, 32'h0001_0000, 32'h1001_0000}),
 		.SLAVE_MASK({32'hFFFF_0000, 32'hFFFF_0000, 32'hFFFF_F000}) 
 	)
 	crossbar
 	(
 		//
 		.i_clk(clk), 
-		.i_rst_n(rst_n),
+		.i_reset(!rst_n),
 		//
 		// Here are the bus inputs from each of the WB bus masters
 		.i_mcyc({wb_cyc_scr_instr, wb_cyc_scr_data}), 

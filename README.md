@@ -2,4 +2,4 @@
 
 Первым делом пропишите git submodule init && git submodule update
 
-make -f bin/simulation/Makefile
+make -f bin/simulation/makefile

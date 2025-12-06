@@ -1,4 +1,5 @@
-RTL_PATHS 			:= $(CURDIR)/src/wb $(CURDIR)/src/wb/utils $(CURDIR)/src/top
+RTL_PATHS 			:= $(CURDIR)/src/wb $(CURDIR)/src/wb/utils 
+RTL_PATHS 			+= $(CURDIR)/src/top
 SCR_SRC_PATH 		:= $(CURDIR)/submodules/scr1/src
 INCLUDE_PATHS 		:= $(SCR_SRC_PATH)/includes
 RTL_SCR_LIST_FILES	:= $(SCR_SRC_PATH)/core.files
