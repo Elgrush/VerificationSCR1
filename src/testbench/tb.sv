@@ -6,11 +6,9 @@ module tb;
 	reg clk = 1;
 	always #1 clk = ~clk;
 
-	reg resetn = 1;
+	reg resetn = 0;
 	initial begin
-		
-		repeat (10) @(posedge clk);
-		resetn <= 0;
+		#1 resetn <= 1;
 	end
 	
 	initial begin
@@ -32,7 +30,7 @@ module tb;
 	
 
 	initial begin
-		#1_000_000;
+		#1_000;
 		$finish;
 	end
 
