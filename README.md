@@ -8,5 +8,8 @@ make -f bin/software/makefile
 Для компиляциии Questa
 make -f bin/simulation/makefile
 
+Makefile проекта прозодит этапы в превеенном выше порядке
+make
+
 При проблемах с .svh файлами в квартусе
 Assignments->Settings->Compiler Settings->Verilog HDL Input = SystemVerilog
