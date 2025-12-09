@@ -13,7 +13,7 @@ Linker script and memory map
                 0x00000000                        . = 0x0
  *(.init)
  *(.text)
- .text          0x00000000      0x320 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .text          0x00000000      0x320 /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
                 0x00000000                read_int
                 0x00000008                write_int
                 0x00000010                mul_fp
@@ -25,18 +25,18 @@ Linker script and memory map
                 0x000001fc                partition
                 0x000002c0                quickSort
  *(*)
- .data          0x00000320        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .bss           0x00000320        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .text.startup  0x00000320       0x24 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .data          0x00000320        0x0 /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
+ .bss           0x00000320        0x0 /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
+ .text.startup  0x00000320       0x24 /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
                 0x00000320                main
- .comment       0x00000344       0x19 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .comment       0x00000344       0x19 /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
                                  0x1a (size before relaxing)
  .note.GNU-stack
-                0x0000035d        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x0000035d        0x0 /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
  .riscv.attributes
-                0x0000035d       0x1c /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x0000035d       0x1c /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
                 0x0000037c                        . = ALIGN (0x4)
  *fill*         0x00000379        0x3 
                 0x0000037c                        end = .
-LOAD /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
-OUTPUT(/mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.elf elf32-littleriscv)
+LOAD /home/elgrush/VerificationSCR1/.cache/build/firmware.c.o
+OUTPUT(/home/elgrush/VerificationSCR1/.cache/build/firmware.elf elf32-littleriscv)

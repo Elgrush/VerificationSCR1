@@ -20,7 +20,7 @@ module tb;
 			
 			$dumpfile("system.vcd");
 			//$dumpvars(0, system_tb.uut.gpio);
-			$dumpvars(0, system_tb); //full_test
+			//$dumpvars(0, system_tb); //full_test
 		end
 
 
@@ -29,12 +29,11 @@ module tb;
 
 
 	SoC #(
-		.FIRMWARE_FILE("../../src/data/firmware.mem"),
-		.ARRAY_FILE("../../src/data/array.mem")
+		.FIRMWARE_FILE("firmware.mem"),
+		.ARRAY_FILE("array.mem")
       ) uut (
 		.clk	(clk),
-		.f_clk	(f_clk),
-		.rst	(resetn),
+		.rst_n	(resetn),
 		.gpio	(gpio),
 		.gpio1	(gpio1)
 	);
