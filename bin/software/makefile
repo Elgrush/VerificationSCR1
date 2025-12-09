@@ -1,4 +1,4 @@
-MEMSIZE          := 4096
+MEMSIZE          ?= 2048
 SRC_PATH		 := $(CURDIR)/src
 FIRMWARE_PATH	 := $(SRC_PATH)/firmware
 SOFTWARE_PATH	 := $(FIRMWARE_PATH)/software
@@ -39,7 +39,6 @@ $(BUILD_PATH)/firmware.hex: $(BUILD_PATH)/firmware.bin
 
 .PHONY: build
 build: $(BUILD_PATH)/firmware.hex
-	@mkdir -p $(BIN_PATH)
 	@cp $(BUILD_PATH)/firmware.hex $(MEMORY_PATH)/firmware.mem
 
 .PHONY: clean

@@ -6,7 +6,7 @@ INCLUDE_PATHS 		:= $(SCR_SRC_PATH)/includes
 RTL_SCR_LIST_FILES	:= $(SCR_SRC_PATH)/core.files
 TB_PATH 			:= $(CURDIR)/src/testbench
 TB_NAME				:= tb
-TB_EXTENSION		:= v
+TB_EXTENSION		:= sv
 
 IVERILOG_COMPILATION_FLAGS := -g2012
 
@@ -30,31 +30,26 @@ VSIM_FILES :=
 VSIM_FILES += $(RTL_FILES)
 VSIM_FILES += $(TB_CALL)
 
-VSIM_ARGS :=
-VSIM_ARGS += vlog -work work +incdir$(foreach directory,$(INCLUDE_PATHS),+$(directory)) -sv $(VSIM_FILES) \n
-VSIM_ARGS += vsim work.$(TB_NAME) \n
-VSIM_ARGS += set WildcardFilter [lsearch -not -all -inline \$$WildcardFilter Memory] \n
-VSIM_ARGS += log /* \n
-VSIM_ARGS += run \n
-
+BIN_DIR  := $(CURDIR)/.cache/bin
 WORK_DIR  := $(CURDIR)/.cache/work
-MEM_FILES := $(wildcard $(MEM_PATH)/*.mem)
+MEM_FILES := $(notdir $(wildcard $(MEM_PATH)/*.mem))
+MEM_FILES_TARGET := $(foreach file,$(MEM_FILES),$(WORK_DIR)/$(file))
 
 .PHONY: run_vsim
-run_vsim : $(INCLUDE_FILES) $(RTL_FILES) $(WORK_DIR)/%.mem
-	@mkdir -p $(WORK_DIR)
+run_vsim : $(MEM_FILES_TARGET) $(VSIM_FILES)
+	@mkdir -p $(WORK_DIR) $(BIN_DIR)
 	@vlib $(WORK_DIR)
 	@vmap work $(WORK_DIR)
-	@vsim -do "$(VSIM_ARGS)"
+	@vlog -work work +incdir$(foreach directory,$(INCLUDE_PATHS),+$(directory)) -sv $(VSIM_FILES)
+	@vsim -c -voptargs=+acc-do -suppress 8386 work.$(TB_NAME) -do $(CURDIR)/bin/simulation/args.tcl
 
-$(WORK_DIR)/%.mem : $(MEM_FILES)
-	@cp $< $@
-
-#log -r /* vcd file $(CURDIR)/.cache/systemQ.vcd vcd add -r /* run -all
+$(MEM_FILES_TARGET) : $(foreach file,$(MEM_FILES),$(MEM_PATH)/$(file))
+	@mkdir -p $(WORK_DIR)
+	@cp -a $(MEM_PATH)/. $(WORK_DIR)
 
 .PHONY: visualize_simulation
 visualize_simulation:
-	@gtkwave $(CURDIR)/.cache/systemIV.vcd
+	@gtkwave $(CURDIR)/.cache/bin/system.vcd
 
 .PHONY: clear_cache
 clear_cache:

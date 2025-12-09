@@ -6,3 +6,5 @@ quartus/project/output_files
 .cache
 transcript
 modelsim.ini
+dump.vcd
+vsim.wlf
