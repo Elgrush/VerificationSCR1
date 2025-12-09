@@ -41,7 +41,7 @@ run_vsim : $(MEM_FILES_TARGET) $(VSIM_FILES)
 	@vlib $(WORK_DIR)
 	@vmap work $(WORK_DIR)
 	@vlog -work work +incdir$(foreach directory,$(INCLUDE_PATHS),+$(directory)) -sv $(VSIM_FILES)
-	@vsim -c -voptargs=+acc-do -suppress 8386 work.$(TB_NAME) -do $(CURDIR)/bin/simulation/args.tcl
+	@vsim -c -voptargs=+acc -suppress 8386 work.$(TB_NAME) -do $(CURDIR)/bin/simulation/args.tcl
 
 $(MEM_FILES_TARGET) : $(foreach file,$(MEM_FILES),$(MEM_PATH)/$(file))
 	@mkdir -p $(WORK_DIR)

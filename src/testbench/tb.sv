@@ -15,7 +15,7 @@ module tb;
 	
 	initial begin
 			$dumpfile(".cache/bin/system.vcd");
-			$dumpvars(0, tb);
+			$dumpvars(0);
 		end
 
     wire [31:0] gpio,gpio1;
@@ -31,9 +31,8 @@ module tb;
 	);
 	
 
-	initial 
-	begin
-		#1_000_000
+	initial begin
+		#1_000_000;
 		$finish;
 	end
 
