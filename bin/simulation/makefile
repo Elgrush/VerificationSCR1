@@ -26,22 +26,21 @@ $(CURDIR)/.cache/systemIV.vcd : $(RTL_FILES)
  	$(RTL_FILES) \
 	-s $(TB_NAME)
 
-VSIM_FILES := 
-VSIM_FILES += $(RTL_FILES)
-VSIM_FILES += $(TB_CALL)
-
 BIN_DIR  := $(CURDIR)/.cache/bin
 WORK_DIR  := $(CURDIR)/.cache/work
+RES_DIR  := $(CURDIR)/res
 MEM_FILES := $(notdir $(wildcard $(MEM_PATH)/*.mem))
 MEM_FILES_TARGET := $(foreach file,$(MEM_FILES),$(WORK_DIR)/$(file))
 
+VSIM_ARGS_FILE := $(CURDIR)/bin/simulation/args.tcl
+
 .PHONY: run_vsim
-run_vsim : $(MEM_FILES_TARGET) $(VSIM_FILES)
-	@mkdir -p $(WORK_DIR) $(BIN_DIR)
+run_vsim : $(MEM_FILES_TARGET) $(RTL_FILES) $(TB_CALL) $(VSIM_ARGS_FILE)
+	@mkdir -p $(WORK_DIR) $(BIN_DIR) $(RES_DIR)
 	@vlib $(WORK_DIR)
 	@vmap work $(WORK_DIR)
-	@vlog -work work +incdir$(foreach directory,$(INCLUDE_PATHS),+$(directory)) -sv $(VSIM_FILES)
-	@vsim -c -voptargs=+acc -suppress 8386 work.$(TB_NAME) -do $(CURDIR)/bin/simulation/args.tcl
+	@vlog -work work +incdir$(foreach directory,$(INCLUDE_PATHS),+$(directory)) -sv $(RTL_FILES) $(TB_CALL)
+	@vsim -c -voptargs=+acc -suppress 8386 work.$(TB_NAME) -do $(VSIM_ARGS_FILE)
 
 $(MEM_FILES_TARGET) : $(foreach file,$(MEM_FILES),$(MEM_PATH)/$(file))
 	@mkdir -p $(WORK_DIR)

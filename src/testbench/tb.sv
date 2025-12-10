@@ -12,7 +12,7 @@ module tb;
 	end
 	
 	initial begin
-			$dumpfile(".cache/bin/system.vcd");
+			$dumpfile("res/system.vcd");
 			$dumpvars(0);
 		end
 
@@ -30,7 +30,8 @@ module tb;
 	
 
 	initial begin
-		#1_000;
+		#1_000_000;
+		$writememh("res/array_done.mem", uut.array_ram.mem, 0, 4095);
 		$finish;
 	end
 

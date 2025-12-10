@@ -1,9 +1,8 @@
 .section .init
-.global main
 
 /* set stack pointer */
-lui sp, %hi(0x4096) //16*1024
-addi sp, sp, %lo(4096)
+lui sp, %hi(_stack_end) //16*1024
+addi sp, sp, %lo(_stack_end)
 
 /* call main */
 jal ra, main

@@ -11,7 +11,7 @@ SSRC             := $(wildcard $(EMBEDDED_PATH)/*.S)
 COBJ             := $(BUILD_PATH)/$(notdir $(addsuffix .o,$(CSRC)))
 SOBJ             := $(BUILD_PATH)/$(notdir $(addsuffix .o,$(SSRC)))
 OBJ              := $(COBJ) $(SOBJ)
-CFLAGS           := -Os -nostdlib -ffreestanding --std=gnu99 -mabi=ilp32d -march=rv32gcv -c
+CFLAGS           := -Os -nostdlib -ffreestanding --std=gnu99 -mabi=ilp32e -march=rv32e -c
 LDFLAGS          := -Bstatic -T $(FIRMWARE_PATH)/firmware.lds -Map $(FIRMWARE_PATH)/firmware.map
 LDFLAGS          += --strip-debug -m elf32lriscv
 

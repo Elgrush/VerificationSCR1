@@ -136,7 +136,9 @@ void main()
 
     int* arr = (int*)(ARRAY_ADDR)+1;
     int size_of_array = *(int*)ARRAY_ADDR;
-    *(int*)ARRAY_ADDR = 0x1488;
+    *(int*)ARRAY_ADDR = 0xDEADBEAF;
 
     quickSort(arr, 0, size_of_array - 1);
+    *(int*)ARRAY_ADDR = 0xBEAFDEAD;
+    *(int*)GPIO_ADDR = 0xBEAFDEAD;
 }

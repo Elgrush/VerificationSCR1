@@ -2,7 +2,7 @@ module wb_ram
 #(
 	parameter BYTE_WIDTH = 8,
 	parameter ADDRESS_WIDTH = 16,
-	parameter [ADDRESS_WIDTH-1:0] DEPTH = 2**(ADDRESS_WIDTH-1),
+	parameter [ADDRESS_WIDTH-1:0] DEPTH = 2**(ADDRESS_WIDTH-$clog2(BYTE_WIDTH)+1),
 	parameter NUM_BYTES = 4,
 	parameter MEMFILE = "",
 	parameter VERBOSE = 0,
@@ -40,7 +40,7 @@ module wb_ram
 	wire ram_we = wb_we_i & valid & wb_ack_o & (((adr_r & ~(ADDR_MASK)) >> 2) < DEPTH);
 
 	wire [31:0] addr;
-	assign addr = (adr_r & ~(ADDR_MASK)) >> 2;
+	assign addr = (adr_r & ~(ADDR_MASK)) >> $clog2(BYTE_WIDTH)-1;
 	wire we = ram_we & (|wb_sel_i);
 
 

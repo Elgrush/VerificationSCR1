@@ -38,7 +38,7 @@ module SoC # (
 		.wb_we_i(wb_we_ram)
 	);
 	
-	wb_ram #(.ADDRESS_WIDTH (8),.MEMFILE(ARRAY_FILE), .ADDR_MASK(32'hFFFF_0000)) 
+	wb_ram #(.ADDRESS_WIDTH (16),.MEMFILE(ARRAY_FILE), .ADDR_MASK(32'hFFFF_0000)) 
 	array_ram ( // Wishbone interface
 		.wb_clk_i(clk),
 		.wb_rst_n_i(rst_n),

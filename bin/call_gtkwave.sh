@@ -1,3 +1,3 @@
 #!/bin/bash
 
-gtkwave .cache/bin/system.vcd&
+gtkwave res/system.vcd&

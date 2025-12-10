@@ -10,5 +10,11 @@ SECTIONS {
 		. = ALIGN(4);
 		end = .;
 	}
+	.stack : {
+        . = ALIGN(16);
+        _stack_start = .;
+        . += 4096;        /* 4KB stack */
+        _stack_end = .;
+    }
 }
 

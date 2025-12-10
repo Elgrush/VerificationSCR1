@@ -9,45 +9,54 @@ Name             Origin             Length             Attributes
 Linker script and memory map
 
 
-.text           0x00000000      0x3e0
+.text           0x00000000      0x530
                 0x00000200                        . = 0x200
  *fill*         0x00000000      0x200 
  *(.init)
- .init          0x00000200        0xe /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+ .init          0x00000200       0x10 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
  *(.text)
- .text          0x0000020e      0x1d2 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
-                0x0000020e                read_int
-                0x00000212                write_int
-                0x00000216                mul_fp
-                0x0000022a                div_fp
-                0x0000023e                exp_fp
-                0x00000296                sqroot_fp
-                0x000002d4                Bartlett_fp
-                0x00000338                swap
-                0x00000342                partition
-                0x000003a8                quickSort
- .text          0x000003e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+ .text          0x00000210      0x320 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x00000210                read_int
+                0x00000218                write_int
+                0x00000220                mul_fp
+                0x00000244                div_fp
+                0x00000268                exp_fp
+                0x000002e4                sqroot_fp
+                0x00000350                Bartlett_fp
+                0x000003f8                swap
+                0x0000040c                partition
+                0x000004d0                quickSort
+ .text          0x00000530        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
 
-.memory         0x000003e0      0x1d0
+.memory         0x00000530       0xa4
                 0x00000000                        . = 0x0
  *(*)
- .data          0x000003e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .bss           0x000003e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .text.startup  0x000003e0       0x16 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
-                0x000003e0                main
- .comment       0x000003f6       0x19 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .data          0x00000530        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .bss           0x00000530        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .text.startup  0x00000530       0x54 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x00000530                main
+ .comment       0x00000584       0x19 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
                                  0x1a (size before relaxing)
  .note.GNU-stack
-                0x0000040f        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x0000059d        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
  .riscv.attributes
-                0x0000040f       0xd1 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .data          0x000004e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
- .bss           0x000004e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+                0x0000059d       0x1c /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .rela.init     0x000005b9        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .data          0x000005b9        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+ .bss           0x000005b9        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
  .riscv.attributes
-                0x000004e0       0xcf /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
-                0x000005b0                        . = ALIGN (0x4)
- *fill*         0x000005af        0x1 
-                0x000005b0                        end = .
+                0x000005b9       0x1a /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+                0x000005d4                        . = ALIGN (0x4)
+ *fill*         0x000005d3        0x1 
+                0x000005d4                        end = .
+
+.stack          0x000005d4     0x100c
+                0x000005e0                        . = ALIGN (0x10)
+ *fill*         0x000005d4        0xc 
+                0x000005e0                        _stack_start = .
+                0x000015e0                        . = (. + 0x1000)
+ *fill*         0x000005e0     0x1000 
+                0x000015e0                        _stack_end = .
 LOAD /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
 LOAD /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
 OUTPUT(/mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.elf elf32-littleriscv)
