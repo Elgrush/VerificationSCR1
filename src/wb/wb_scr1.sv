@@ -99,7 +99,7 @@ module wb_scr1 (
     	.core_mtimer_val_i(timer),          // Machine timer value
 
 		// Instruction Memory Interface
-		.imem2core_req_ack_i(imem2core_valid),        // IMEM request acknowledge
+		.imem2core_req_ack_i(imem2core_ack),        // IMEM request acknowledge
 		.core2imem_req_o(core2imem_req),            // IMEM request
 		.core2imem_cmd_o(core2imem_cmd),            // IMEM command
 		.core2imem_addr_o(core2imem_addr),           // IMEM address
@@ -107,7 +107,7 @@ module wb_scr1 (
 		.imem2core_resp_i(imem2core_resp),           // IMEM response
 
 		// Data Memory Interface
-		.dmem2core_req_ack_i(dmem2core_valid),        // DMEM request acknowledge
+		.dmem2core_req_ack_i(dmem2core_ack),        // DMEM request acknowledge
 		.core2dmem_req_o(core2dmem_req),            // DMEM request
 		.core2dmem_cmd_o(core2dmem_cmd),            // DMEM command
 		.core2dmem_width_o(core2dmem_width),          // DMEM data width

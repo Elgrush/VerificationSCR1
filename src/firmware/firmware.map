@@ -9,35 +9,45 @@ Name             Origin             Length             Attributes
 Linker script and memory map
 
 
-.memory         0x00000000      0x57c
+.text           0x00000000      0x3e0
                 0x00000200                        . = 0x200
  *fill*         0x00000000      0x200 
  *(.init)
+ .init          0x00000200        0xe /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
  *(.text)
- .text          0x00000200      0x320 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
-                0x00000200                read_int
-                0x00000208                write_int
-                0x00000210                mul_fp
-                0x00000234                div_fp
-                0x00000258                exp_fp
-                0x000002d4                sqroot_fp
-                0x00000340                Bartlett_fp
-                0x000003e8                swap
-                0x000003fc                partition
-                0x000004c0                quickSort
+ .text          0x0000020e      0x1d2 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x0000020e                read_int
+                0x00000212                write_int
+                0x00000216                mul_fp
+                0x0000022a                div_fp
+                0x0000023e                exp_fp
+                0x00000296                sqroot_fp
+                0x000002d4                Bartlett_fp
+                0x00000338                swap
+                0x00000342                partition
+                0x000003a8                quickSort
+ .text          0x000003e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+
+.memory         0x000003e0      0x1d0
+                0x00000000                        . = 0x0
  *(*)
- .data          0x00000520        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .bss           0x00000520        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
- .text.startup  0x00000520       0x24 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
-                0x00000520                main
- .comment       0x00000544       0x19 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .data          0x000003e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .bss           0x000003e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .text.startup  0x000003e0       0x16 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x000003e0                main
+ .comment       0x000003f6       0x19 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
                                  0x1a (size before relaxing)
  .note.GNU-stack
-                0x0000055d        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+                0x0000040f        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
  .riscv.attributes
-                0x0000055d       0x1c /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
-                0x0000057c                        . = ALIGN (0x4)
- *fill*         0x00000579        0x3 
-                0x0000057c                        end = .
+                0x0000040f       0xd1 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+ .data          0x000004e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+ .bss           0x000004e0        0x0 /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+ .riscv.attributes
+                0x000004e0       0xcf /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
+                0x000005b0                        . = ALIGN (0x4)
+ *fill*         0x000005af        0x1 
+                0x000005b0                        end = .
 LOAD /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.c.o
+LOAD /mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.S.o
 OUTPUT(/mnt/g/CodingSpace/VerificationSCR1/.cache/build/firmware.elf elf32-littleriscv)

@@ -11,7 +11,7 @@ SSRC             := $(wildcard $(EMBEDDED_PATH)/*.S)
 COBJ             := $(BUILD_PATH)/$(notdir $(addsuffix .o,$(CSRC)))
 SOBJ             := $(BUILD_PATH)/$(notdir $(addsuffix .o,$(SSRC)))
 OBJ              := $(COBJ) $(SOBJ)
-CFLAGS           := -Os -nostdlib -ffreestanding --std=gnu99 -mabi=ilp32d -march=rv64gcv -c
+CFLAGS           := -Os -nostdlib -ffreestanding --std=gnu99 -mabi=ilp32d -march=rv32gcv -c
 LDFLAGS          := -Bstatic -T $(FIRMWARE_PATH)/firmware.lds -Map $(FIRMWARE_PATH)/firmware.map
 LDFLAGS          += --strip-debug -m elf32lriscv
 
@@ -28,8 +28,8 @@ $(SOBJ): $(BUILD_PATH)/%.S.o : $(EMBEDDED_PATH)/%.S
 	mkdir -p $(BUILD_PATH)
 	riscv32-unknown-elf-gcc $(CFLAGS) -o $@ $<
 
-$(BUILD_PATH)/firmware.elf: $(OBJ) $(FIRMWARE_PATH)/firmware.lds $(FIRMWARE_PATH)/firmware.map
-	riscv32-unknown-elf-ld $(LDFLAGS) -o $@ $<
+$(BUILD_PATH)/firmware.elf: $(OBJ) $(FIRMWARE_PATH)/firmware.lds
+	riscv32-unknown-elf-ld $(LDFLAGS) -o $@ $(OBJ)
 
 $(BUILD_PATH)/firmware.bin: $(BUILD_PATH)/firmware.elf
 	riscv32-unknown-elf-objcopy -O binary $< $@
