@@ -19,6 +19,7 @@ module wb_master_scr (
 
 	input mem_valid,
 	output reg mem_ready,
+	output reg mem_ack,
 
 	input [`SCR1_IMEM_AWIDTH-1:0] mem_addr_i,
 	input [`SCR1_IMEM_DWIDTH-1:0] mem_wdata_i,
@@ -26,12 +27,15 @@ module wb_master_scr (
 );
     localparam IDLE = 2'b00;
 	localparam WBSTART = 2'b01;
-	localparam WBEND = 2'b10;
+	localparam WBSEND = 2'b10;
+	localparam WBEND = 2'b11;
 
 	reg [1:0] state;
 
 	wire we;
 	assign we = |mem_wstrb_i;
+
+	assign mem_rdata = wbm_dat_i;
 
 	always @(posedge wb_clk_i) begin
 		if (!wb_rst_n_i) begin
@@ -41,6 +45,7 @@ module wb_master_scr (
 			wbm_sel_o <= 0;
 			wbm_stb_o <= 0;
 			wbm_cyc_o <= 0;
+			mem_ack <= 0;
 			state <= IDLE;
 		end else begin
 			case (state)
@@ -53,6 +58,8 @@ module wb_master_scr (
 
 						wbm_stb_o <= 1'b1;
 						wbm_cyc_o <= 1'b1;
+
+						mem_ack <= 1;
 						state <= WBSTART;
 					end else begin
 						mem_ready <= 1'b0;
@@ -63,16 +70,18 @@ module wb_master_scr (
 					end
 				end
 				WBSTART:begin
+					mem_ack <= 0;
 					if (wbm_ack_i) begin
-						mem_rdata <= wbm_dat_i;
-						mem_ready <= 1'b1;
-
-						state <= WBEND;
-
-						wbm_stb_o <= 1'b0;
-						wbm_cyc_o <= 1'b0;
-						wbm_we_o <= 1'b0;
+						state <= WBSEND;
 					end
+				end
+				WBSEND:begin
+					mem_ready <= 1'b1;
+					state <= WBEND;
+
+					wbm_stb_o <= 1'b0;
+					wbm_cyc_o <= 1'b0;
+					wbm_we_o <= 1'b0;
 				end
 				WBEND: begin
 					mem_ready <= 1'b0;

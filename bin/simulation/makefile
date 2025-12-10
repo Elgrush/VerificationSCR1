@@ -19,7 +19,7 @@ RTL_FILES += $(TB_CALL)
 .PHONY: all
 all: run_vsim
 
-$(CURDIR)/.cache/systemIV.vcd : $(INCLUDE_FILES) $(RTL_FILES)
+$(CURDIR)/.cache/systemIV.vcd : $(RTL_FILES)
 	@iverilog -o $(CURDIR)/.cache/systemIV.vcd \
 	$(IVERILOG_COMPILATION_FLAGS) \
 	$(foreach path,$(INCLUDE_PATHS), -I $(path)) \

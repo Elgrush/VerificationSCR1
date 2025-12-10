@@ -39,10 +39,8 @@ module wb_ram
 
 	wire ram_we = wb_we_i & valid & wb_ack_o & (((adr_r & ~(ADDR_MASK)) >> 2) < DEPTH);
 
-	wire [31:0] waddr;
-	assign waddr = (adr_r & ~(ADDR_MASK)) >> 2;
-	wire [31:0] raddr;
-	assign raddr = (adr_r & ~(ADDR_MASK)) >> 2;
+	wire [31:0] addr;
+	assign addr = (adr_r & ~(ADDR_MASK)) >> 2;
 	wire we = ram_we & (|wb_sel_i);
 
 
@@ -50,16 +48,16 @@ module wb_ram
 
 
 	always @(posedge wb_clk_i) begin
-		if ((waddr) < DEPTH) begin
+		if ((addr) < DEPTH) begin
+			wb_dat_o <= mem[addr];
+
 			if(we) begin
-				if(wb_sel_i[0]) mem[waddr][0] <= wb_dat_i[0*BYTE_WIDTH +: BYTE_WIDTH];
-				if(wb_sel_i[1]) mem[waddr][1] <= wb_dat_i[1*BYTE_WIDTH +: BYTE_WIDTH];
-				if(wb_sel_i[2]) mem[waddr][2] <= wb_dat_i[2*BYTE_WIDTH +: BYTE_WIDTH];
-				if(wb_sel_i[3]) mem[waddr][3] <= wb_dat_i[3*BYTE_WIDTH +: BYTE_WIDTH];
+				if(wb_sel_i[0]) mem[addr][0] <= wb_dat_i[0*BYTE_WIDTH +: BYTE_WIDTH];
+				if(wb_sel_i[1]) mem[addr][1] <= wb_dat_i[1*BYTE_WIDTH +: BYTE_WIDTH];
+				if(wb_sel_i[2]) mem[addr][2] <= wb_dat_i[2*BYTE_WIDTH +: BYTE_WIDTH];
+				if(wb_sel_i[3]) mem[addr][3] <= wb_dat_i[3*BYTE_WIDTH +: BYTE_WIDTH];
 			end
 		end
-
-		if ((raddr) < DEPTH) wb_dat_o <= mem[raddr];
 	end
 
 	initial 

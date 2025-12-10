@@ -44,14 +44,15 @@ module wb_scr1 (
 		end
 	end
 
-	logic imem2core_ready;
+	logic imem2core_valid;
 	logic core2imem_req;            // IMEM request
+	logic imem2core_ack;
 	logic [`SCR1_IMEM_AWIDTH-1:0] core2imem_addr;           // IMEM address
 	logic [`SCR1_IMEM_DWIDTH-1:0] imem2core_rdata;          // IMEM read data
 	type_scr1_mem_resp_e imem2core_resp;           // IMEM response
 	
 	always_comb begin
-		if(imem2core_ready) begin
+		if(imem2core_valid) begin
 			imem2core_resp = SCR1_MEM_RESP_RDY_OK;
 		end else begin
 			imem2core_resp = SCR1_MEM_RESP_NOTRDY;
@@ -60,8 +61,9 @@ module wb_scr1 (
 
 
 	// Data Memory Interface
-	logic dmem2core_ready;
+	logic dmem2core_valid;
 	logic core2dmem_req;            // DMEM request
+	logic dmem2core_ack;
 	type_scr1_mem_cmd_e core2dmem_cmd;            // DMEM command
 	type_scr1_mem_width_e core2dmem_width;          // DMEM data width
 	logic [`SCR1_IMEM_AWIDTH-1:0] core2dmem_addr;           // DMEM address
@@ -70,7 +72,7 @@ module wb_scr1 (
 	type_scr1_mem_resp_e dmem2core_resp;            // DMEM response
 
 	always_comb begin
-		if(dmem2core_ready) begin
+		if(dmem2core_valid) begin
 			dmem2core_resp = SCR1_MEM_RESP_RDY_OK;
 		end else begin
 			dmem2core_resp = SCR1_MEM_RESP_NOTRDY;
@@ -97,7 +99,7 @@ module wb_scr1 (
     	.core_mtimer_val_i(timer),          // Machine timer value
 
 		// Instruction Memory Interface
-		.imem2core_req_ack_i(imem2core_ready),        // IMEM request acknowledge
+		.imem2core_req_ack_i(imem2core_valid),        // IMEM request acknowledge
 		.core2imem_req_o(core2imem_req),            // IMEM request
 		.core2imem_cmd_o(core2imem_cmd),            // IMEM command
 		.core2imem_addr_o(core2imem_addr),           // IMEM address
@@ -105,7 +107,7 @@ module wb_scr1 (
 		.imem2core_resp_i(imem2core_resp),           // IMEM response
 
 		// Data Memory Interface
-		.dmem2core_req_ack_i(dmem2core_ready),        // DMEM request acknowledge
+		.dmem2core_req_ack_i(dmem2core_valid),        // DMEM request acknowledge
 		.core2dmem_req_o(core2dmem_req),            // DMEM request
 		.core2dmem_cmd_o(core2dmem_cmd),            // DMEM command
 		.core2dmem_width_o(core2dmem_width),          // DMEM data width
@@ -144,9 +146,10 @@ module wb_scr1 (
 		.wbm_cyc_o(wbm_cyc_instr_o),
 
 		.mem_valid(core2imem_req),
-		.mem_ready(imem2core_ready),
+		.mem_ready(imem2core_valid),
+		.mem_ack(imem2core_ack),
 
-        .mem_addr_i('0),
+        .mem_addr_i(core2imem_addr),
         .mem_wdata_i('0),
         .mem_wstrb_i('0)
 	), data_master(
@@ -164,7 +167,8 @@ module wb_scr1 (
 		.wbm_cyc_o(wbm_cyc_data_o),
 
 		.mem_valid(core2dmem_req),
-		.mem_ready(dmem2core_ready),
+		.mem_ready(dmem2core_valid),
+		.mem_ack(dmem2core_ack),
 
         .mem_addr_i(core2dmem_addr),
         .mem_wdata_i(core2dmem_wdata),

@@ -2,7 +2,7 @@
 .global main
 
 /* set stack pointer */
-lui sp, %hi(4096) //16*1024
+lui sp, %hi(0x4096) //16*1024
 addi sp, sp, %lo(4096)
 
 /* call main */
