@@ -1,6 +1,8 @@
+quartus/project/c5_pin_model_dump.txt
 quartus/project/db
 quartus/project/incremental_db
 quartus/project/output_files
+
 *.bak
 
 .cache
