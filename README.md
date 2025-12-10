@@ -27,7 +27,7 @@ GTKWave <br/>
 
 Makefile проекта прозодит этапы в превеенном выше порядке:
 `make`<br/>
-Открыть итоговую вейформу в GTKwave: `bin/call_gtkwave`<br/>
+Открыть итоговую вейформу в GTKwave: `bin/call_gtkwave.sh`<br/>
 Очистка кэша: `bin/cleanup.sh`
 
 # FAQ
