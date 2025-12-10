@@ -30,7 +30,7 @@ module tb;
 	
 
 	initial begin
-		#1_000_000;
+		#500_000;
 		$writememh("res/array_done.mem", uut.array_ram.mem, 0, 4095);
 		$finish;
 	end
