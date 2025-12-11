@@ -12,7 +12,7 @@
 # Для работы в PATH должны быть:
 [riscv-toolchain](https://github.com/riscv-collab/riscv-gnu-toolchain/releases/tag/2025.11.04) <br/>
 Questa Analyzer (Гайд ниже) <br/>
-GTKWave <br/>
+GTKWave `sudo apt install gtkwave` <br/>
 
 # Гайд по установке Questa
 Дальше нужен ВПН:<br/>
