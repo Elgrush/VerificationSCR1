@@ -21,14 +21,16 @@ GTKWave `sudo apt install gtkwave` <br/>
 
 # Список утилит
 Для компиляциии прошивки:
-`make -f bin/software/makefile`<br/>
+`make build_firmware`<br/>
 Для компиляциии Questa:
-`make -f bin/simulation/makefile`<br/>
+`make run_vsim`<br/>
 
 Makefile проекта прозодит этапы в превеенном выше порядке:
 `make`<br/>
-Открыть итоговую вейформу в GTKwave: `bin/call_gtkwave.sh`<br/>
-Очистка кэша: `bin/cleanup.sh`
+Открыть итоговую вейформу в GTKwave: `make call_gtkwave`<br/>
+Очистка кэша: `make clean`<br/>
+Очистка программы: `make clean_firmware`<br/>
+Очистка симуляции: `make clean_simulation`<br/>
 
 # FAQ
 При проблемах с .svh файлами в квартусе поставьте

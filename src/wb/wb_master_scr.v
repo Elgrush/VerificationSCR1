@@ -27,8 +27,7 @@ module wb_master_scr (
 );
     localparam IDLE = 2'b00;
 	localparam WBSTART = 2'b01;
-	localparam WBSEND = 2'b10;
-	localparam WBEND = 2'b11;
+	localparam WBEND = 2'b10;
 
 	reg [1:0] state;
 
@@ -72,19 +71,15 @@ module wb_master_scr (
 				WBSTART:begin
 					mem_ack <= 0;
 					if (wbm_ack_i) begin
-						state <= WBSEND;
+						state <= WBEND;
+						mem_ready <= 1'b1;
 					end
-				end
-				WBSEND:begin
-					mem_ready <= 1'b1;
-					state <= WBEND;
-
-					wbm_stb_o <= 1'b0;
-					wbm_cyc_o <= 1'b0;
-					wbm_we_o <= 1'b0;
 				end
 				WBEND: begin
 					mem_ready <= 1'b0;
+					wbm_stb_o <= 1'b0;
+					wbm_cyc_o <= 1'b0;
+					wbm_we_o <= 1'b0;
 
 					state <= IDLE;
 				end
