@@ -79,7 +79,7 @@ $(MEM_FILES_TARGET) : $(foreach file,$(MEM_FILES),$(MEM_DIR)/$(file))
 
 .PHONY: call_gtkwave
 call_gtkwave:
-	@gtkwave $(CURDIR)/.cache/bin/system.vcd&
+	@gtkwave $(CURDIR)/res/system.vcd&
 
 .PHONY: clean_simulation
 clean_simulation:
